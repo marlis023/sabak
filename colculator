@@ -1,0 +1,53 @@
+
+from tkinter import *
+
+# Функция для обработки нажатий на кнопки
+def button_click(value):
+    current = entry_var.get()
+    entry_var.set(current + str(value))
+
+# Функция для вычисления результата
+def calculate():
+    try:
+        result = eval(entry_var.get())
+        entry_var.set(result)
+    except Exception as e:
+        entry_var.set("Ошибка")
+
+# Функция для очистки ввода
+def clear():
+    entry_var.set("")
+
+# Создание главного окна
+root = Tk()
+root.title("Калькулятор")
+root.geometry("200x250")
+
+# Поле ввода
+entry_var = StringVar()
+entry = Entry(root, textvariable=entry_var, font=("Arial", 20), justify=RIGHT)
+entry.pack(fill=BOTH, ipadx=0.9, ipady=8, pady=5)
+
+# Кнопки калькулятора
+buttons = [
+    ('7', '8', '9', '='),
+    ('4', '5', '6', '/'),
+    ('1', '2', '3', '*'),
+    ('C', '0', '+', '-')
+]
+
+# Создание кнопок
+for row in buttons:
+    frame = Frame(root)
+    frame.pack(expand=YES, fill=BOTH)
+    for char in row:
+        if char == "=":
+            btn = Button(frame, text=char, font=("Arial", 18), command=calculate)
+        elif char == "C":
+            btn = Button(frame, text=char, font=("Arial", 18), command=clear)
+        else:
+            btn = Button(frame, text=char, font=("Arial", 18),
+                         command=lambda ch=char: button_click(ch))
+        btn.pack(side=LEFT, expand=YES, fill=BOTH)
+
+root.mainloop()
