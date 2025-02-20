@@ -1,5 +1,6 @@
 from tkinter import *
 
+<<<<<<< HEAD
 def on_button_click(value):
     current_text = entry_var.get()
     if value == "=":
@@ -33,3 +34,8 @@ for row in buttons:
         button.pack(side=LEFT, expand=True, fill=BOTH)
 
 root.mainloop()
+=======
+a=int(input())
+b=int(input())
+print("a+b")
+>>>>>>> 0109b288091a42a38459c33d96fb12099efeb2e6
